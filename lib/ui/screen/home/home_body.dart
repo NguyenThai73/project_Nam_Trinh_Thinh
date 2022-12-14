@@ -1,7 +1,4 @@
 // ignore_for_file: avoid_unnecessary_containers, deprecated_member_use, prefer_const_constructors, use_build_context_synchronously, unused_local_variable, prefer_const_literals_to_create_immutables, must_be_immutable, prefer_is_empty
-
-import 'dart:convert';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -175,6 +172,14 @@ class _HomeBodyState extends State<HomeBody> {
                 controller: ScrollController(),
                 child: Column(
                   children: [
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      child: Image.asset(
+                        "assets/images/slide.jfif",
+                        width: MediaQuery.of(context).size.width,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                     ListJobsBox(
                       title: "Việc làm hot",
                       listWorks: listWorkHot,
