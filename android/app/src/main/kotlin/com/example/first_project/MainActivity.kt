@@ -1,4 +1,4 @@
-package com.example.nam_tring_thinh
+package com.example.first_project
 
 import io.flutter.embedding.android.FlutterActivity
 
