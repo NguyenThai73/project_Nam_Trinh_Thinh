@@ -124,6 +124,7 @@ httpPut(url, requestBody, context) async {
     try {
       return {"headers": response.headers, "body": json.decode(utf8.decode(response.bodyBytes))};
     } on FormatException catch (e) {}
-  } else
+  } else {
     return {"headers": response.headers, "body": utf8.decode(response.bodyBytes)};
+  }
 }

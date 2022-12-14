@@ -20,6 +20,7 @@ class WorkInfo extends StatefulWidget {
 
 class _WorkInfoState extends State<WorkInfo> {
   Work workInfo = Work();
+  final oCcy = NumberFormat("#,##0", "en_US");
   Future<Work> getWork() async {
     var response = await httpGet("/api/listjobs/${widget.work.id}", context);
     var body = response['body'];
@@ -41,6 +42,7 @@ class _WorkInfoState extends State<WorkInfo> {
         ),
         name: body['name'],
         salary: body['salary'],
+        quantity: body['quantity'] ?? 0,
         sex: body['sex'],
         age: body['age'],
         experence: body['experence'],
@@ -51,6 +53,7 @@ class _WorkInfoState extends State<WorkInfo> {
         status: body['status'],
         codeAddress: body['codeAddress'],
         dateExpiration: body['dateExpiration'],
+        dateCreated: body['dateCreated'],
       );
     });
     return workInfo;
@@ -150,7 +153,7 @@ class _WorkInfoState extends State<WorkInfo> {
                                   children: [
                                     Container(
                                       margin: const EdgeInsets.only(top: 15, bottom: 5),
-                                      width: MediaQuery.of(context).size.width*0.75,
+                                      width: MediaQuery.of(context).size.width * 0.75,
                                       height: 48,
                                       child: Text(
                                         workInfo.name!,
@@ -196,7 +199,7 @@ class _WorkInfoState extends State<WorkInfo> {
                           ],
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         height: MediaQuery.of(context).size.height * 0.71,
                         child: DefaultTabController(
                           length: 2,
@@ -208,7 +211,7 @@ class _WorkInfoState extends State<WorkInfo> {
                                 child: TabBar(
                                   indicatorWeight: 3,
                                   isScrollable: true,
-                                  indicatorColor: Color(0xf7fbfc),
+                                  indicatorColor: Color(0x00f7fbfc),
                                   onTap: (value) {
                                     setState(() {
                                       selectedTap = value;
@@ -265,229 +268,299 @@ class _WorkInfoState extends State<WorkInfo> {
                                   Container(
                                     height: MediaQuery.of(context).size.height * 0.73,
                                     padding: const EdgeInsets.only(left: 15, right: 15),
-                                    // child: ListView(
-                                    //   controller: ScrollController(),
-                                    //   children: [
-                                    //     const SizedBox(height: 15),
-                                    //     Text(
-                                    //       "Thông tin chung:",
-                                    //       style: AppStyles.appTextStyle(size: 22, weight: FontWeight.w600),
-                                    //     ),
-                                    //     const SizedBox(height: 20),
-                                    //     Row(
-                                    //       children: [
-                                    //         const SizedBox(width: 20),
-                                    //         const Icon(Icons.paid, size: 20, color: maincolor),
-                                    //         const SizedBox(width: 20),
-                                    //         Column(
-                                    //           mainAxisAlignment: MainAxisAlignment.start,
-                                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                                    //           children: [
-                                    //             Text(
-                                    //               "Mức lương:",
-                                    //               style: AppStyles.appTextStyle(size: 18, weight: FontWeight.w500),
-                                    //             ),
-                                    //             const SizedBox(height: 5),
-                                    //             Text(
-                                    //                 "${(int.tryParse(widget.job.salary!) != null) ? formatCurrency.format(int.parse(widget.job.salary ?? "0")) : widget.job.salary!}",
-                                    //                 style: AppStyles.appTextStyle(size: 15)),
-                                    //           ],
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //     const SizedBox(height: 15),
-                                    //     Row(
-                                    //       children: [
-                                    //         const SizedBox(width: 20),
-                                    //         const Icon(Icons.person_add, size: 20, color: maincolor),
-                                    //         const SizedBox(width: 20),
-                                    //         Column(
-                                    //           mainAxisAlignment: MainAxisAlignment.start,
-                                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                                    //           children: [
-                                    //             Text(
-                                    //               "Số lượng:",
-                                    //               style: AppStyles.appTextStyle(size: 18, weight: FontWeight.w500),
-                                    //             ),
-                                    //             const SizedBox(height: 5),
-                                    //             Text(widget.job.qty!, style: AppStyles.appTextStyle(size: 15)),
-                                    //           ],
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //     const SizedBox(height: 15),
-                                    //     Row(
-                                    //       children: [
-                                    //         const SizedBox(width: 20),
-                                    //         const Icon(Icons.face_retouching_natural, size: 20, color: maincolor),
-                                    //         const SizedBox(width: 20),
-                                    //         Column(
-                                    //           mainAxisAlignment: MainAxisAlignment.start,
-                                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                                    //           children: [
-                                    //             Text(
-                                    //               "Độ tuổi:",
-                                    //               style: AppStyles.appTextStyle(size: 18, weight: FontWeight.w500),
-                                    //             ),
-                                    //             const SizedBox(height: 5),
-                                    //             Text(widget.job.age!, style: AppStyles.appTextStyle(size: 15)),
-                                    //           ],
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //     const SizedBox(height: 15),
-                                    //     Row(
-                                    //       children: [
-                                    //         const SizedBox(width: 20),
-                                    //         const Icon(Icons.language, size: 20, color: maincolor),
-                                    //         const SizedBox(width: 20),
-                                    //         Column(
-                                    //           mainAxisAlignment: MainAxisAlignment.start,
-                                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                                    //           children: [
-                                    //             Text(
-                                    //               "Trình độ tiếng anh:",
-                                    //               style: AppStyles.appTextStyle(size: 18, weight: FontWeight.w500),
-                                    //             ),
-                                    //             const SizedBox(height: 5),
-                                    //             Text(widget.job.englishLevel!, style: AppStyles.appTextStyle(size: 15)),
-                                    //           ],
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //     const SizedBox(height: 15),
-                                    //     Row(
-                                    //       children: [
-                                    //         const SizedBox(width: 20),
-                                    //         const Icon(Icons.workspace_premium, size: 20, color: maincolor),
-                                    //         const SizedBox(width: 20),
-                                    //         Column(
-                                    //           mainAxisAlignment: MainAxisAlignment.start,
-                                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                                    //           children: [
-                                    //             Text(
-                                    //               "Kinh nghiệm:",
-                                    //               style: AppStyles.appTextStyle(size: 18, weight: FontWeight.w500),
-                                    //             ),
-                                    //             const SizedBox(height: 5),
-                                    //             Text(widget.job.exp!, style: AppStyles.appTextStyle(size: 15)),
-                                    //           ],
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //     const SizedBox(height: 15),
-                                    //     Row(
-                                    //       children: [
-                                    //         const SizedBox(width: 20),
-                                    //         const Icon(Icons.location_on, size: 20, color: maincolor),
-                                    //         const SizedBox(width: 20),
-                                    //         Column(
-                                    //           mainAxisAlignment: MainAxisAlignment.start,
-                                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                                    //           children: [
-                                    //             Text(
-                                    //               "Địa chỉ:",
-                                    //               style: AppStyles.appTextStyle(size: 18, weight: FontWeight.w500),
-                                    //             ),
-                                    //             const SizedBox(height: 5),
-                                    //             Text(widget.job.addRess ?? "", style: AppStyles.appTextStyle(size: 15)),
-                                    //           ],
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //     const SizedBox(height: 25),
-                                    //     Text(
-                                    //       "Yêu cầu khác:",
-                                    //       style: AppStyles.appTextStyle(size: 22, weight: FontWeight.w600),
-                                    //     ),
-                                    //     const SizedBox(height: 15),
-                                    //     Row(
-                                    //       children: [
-                                    //         const SizedBox(width: 40),
-                                    //         Text(widget.job.otherRequirements ?? "", style: AppStyles.appTextStyle(size: 15)),
-                                    //       ],
-                                    //     ),
-                                    //   ],
-                                    // ),
+                                    child: ListView(
+                                      controller: ScrollController(),
+                                      children: [
+                                        const SizedBox(height: 15),
+                                        Text(
+                                          "Thông tin chung:",
+                                          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                                        ),
+                                        const SizedBox(height: 20),
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 20),
+                                            const Icon(Icons.paid, size: 20, color: maincolor),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Mức lương:",
+                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  "${oCcy.format(workInfo.salary)} VNĐ",
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 15),
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 20),
+                                            const Icon(Icons.person_add, size: 20, color: maincolor),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Số lượng:",
+                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  "${workInfo.quantity ?? 0}",
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 15),
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 20),
+                                            const Icon(Icons.face_retouching_natural, size: 20, color: maincolor),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Độ tuổi:",
+                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  "${workInfo.age}",
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 15),
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 20),
+                                            const Icon(Icons.person, size: 20, color: maincolor),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Giới tính:",
+                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  "${workInfo.sex == true ? "Nam" : workInfo.sex == false ? "Nữ" : "Không yêu cầu"}",
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 15),
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 20),
+                                            const Icon(Icons.workspace_premium, size: 20, color: maincolor),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Kinh nghiệm:",
+                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  "${workInfo.experence ?? ""}",
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 15),
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 20),
+                                            const Icon(Icons.location_on, size: 20, color: maincolor),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Địa chỉ:",
+                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  "${workInfo.workAddress ?? ""}",
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 15),
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 20),
+                                            const Icon(Icons.date_range, size: 20, color: maincolor),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Ngày đăng tuyển:",
+                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  (workInfo.dateCreated != null)
+                                                      ? "${DateFormat('dd-MM-yyyy').format(DateTime.parse(workInfo.dateCreated!))}"
+                                                      : "",
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 25),
+                                        Text(
+                                          "Yêu cầu khác:",
+                                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                        ),
+                                        const SizedBox(height: 15),
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 40),
+                                            SizedBox(
+                                              width: MediaQuery.of(context).size.width * 0.8,
+                                              child: Text(
+                                                "${workInfo.description ?? ""}",
+                                                style: TextStyle(fontSize: 15),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                   Container(
                                     padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
                                     height: MediaQuery.of(context).size.height * 0.73,
-                                    // child: ListView(
-                                    //   controller: ScrollController(),
-                                    //   children: [
-                                    //     Text(
-                                    //       widget.job.employer.name ?? "",
-                                    //       style: AppStyles.appTextStyle(size: 22, weight: FontWeight.w600),
-                                    //     ),
-                                    //     const SizedBox(height: 20),
-                                    //     Row(
-                                    //       children: [
-                                    //         const SizedBox(width: 20),
-                                    //         const Icon(Icons.location_on, size: 20, color: maincolor),
-                                    //         const SizedBox(width: 20),
-                                    //         Column(
-                                    //           mainAxisAlignment: MainAxisAlignment.start,
-                                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                                    //           children: [
-                                    //             Text(
-                                    //               "Địa chỉ:",
-                                    //               style: AppStyles.appTextStyle(size: 18, weight: FontWeight.w500),
-                                    //             ),
-                                    //             const SizedBox(height: 5),
-                                    //             SizedBox(
-                                    //                 width: MediaQuery.of(context).size.width * 0.8,
-                                    //                 child: Text(
-                                    //                   widget.job.employer.addRess ?? "",
-                                    //                   style: AppStyles.appTextStyle(size: 15),
-                                    //                   maxLines: 3,
-                                    //                 )),
-                                    //           ],
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //     const SizedBox(height: 15),
-                                    //     Row(
-                                    //       children: [
-                                    //         const SizedBox(width: 20),
-                                    //         const Icon(Icons.language, size: 20, color: maincolor),
-                                    //         const SizedBox(width: 20),
-                                    //         Column(
-                                    //           mainAxisAlignment: MainAxisAlignment.start,
-                                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                                    //           children: [
-                                    //             Text(
-                                    //               "Website:",
-                                    //               style: AppStyles.appTextStyle(size: 18, weight: FontWeight.w500),
-                                    //             ),
-                                    //             const SizedBox(height: 5),
-                                    //             Text(widget.job.employer.career!, style: AppStyles.appTextStyle(size: 15)),
-                                    //           ],
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //     const SizedBox(height: 25),
-                                    //     Text(
-                                    //       "Giới thiệu về công ty",
-                                    //       style: AppStyles.appTextStyle(size: 22, weight: FontWeight.w600),
-                                    //     ),
-                                    //     const SizedBox(height: 15),
-                                    //     Row(
-                                    //       children: [
-                                    //         const SizedBox(width: 40),
-                                    //         SizedBox(
-                                    //             width: MediaQuery.of(context).size.width * 0.8,
-                                    //             child: Text(widget.job.employer.introduce ?? "", style: AppStyles.appTextStyle(size: 15))),
-                                    //       ],
-                                    //     ),
-                                    //     const SizedBox(height: 25),
-                                    //     Text(
-                                    //       "Việc làm cùng công ty",
-                                    //       style: AppStyles.appTextStyle(size: 22, weight: FontWeight.w600),
-                                    //     ),
-                                    //     const SizedBox(height: 25),
-                                    //   ],
-                                    // ),
+                                    child: ListView(
+                                      controller: ScrollController(),
+                                      children: [
+                                        Text(
+                                          workInfo.company!.name ?? "",
+                                          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                                        ),
+                                        const SizedBox(height: 20),
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 20),
+                                            const Icon(Icons.location_on, size: 20, color: maincolor),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Địa chỉ:",
+                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                SizedBox(
+                                                    width: MediaQuery.of(context).size.width * 0.8,
+                                                    child: Text(
+                                                      workInfo.company!.address ?? "",
+                                                      style: TextStyle(fontSize: 15),
+                                                      maxLines: 3,
+                                                    )),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 15),
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 20),
+                                            const Icon(Icons.call, size: 20, color: maincolor),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Phone:",
+                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  workInfo.company!.phone ?? "",
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 15),
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 20),
+                                            const Icon(Icons.email, size: 20, color: maincolor),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Email:",
+                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  workInfo.company!.email ?? "",
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 25),
+                                        Text(
+                                          "Giới thiệu về công ty",
+                                          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                                        ),
+                                        const SizedBox(height: 15),
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 40),
+                                            SizedBox(
+                                                width: MediaQuery.of(context).size.width * 0.8,
+                                                child: Text(
+                                                  "",
+                                                  style: TextStyle(fontSize: 15),
+                                                )),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ]),
                               )
@@ -511,7 +584,7 @@ class _WorkInfoState extends State<WorkInfo> {
                                 onPressed: () {},
                                 child: Text(
                                   "Ứng tuyển ngay",
-                                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400,color: colorBlack),
+                                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: colorBlack),
                                 ),
                               ),
                             ),

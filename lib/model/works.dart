@@ -15,6 +15,7 @@ class Work {
   String? description;
   int? status;
   int? codeAddress;
+  String? dateCreated;
   String? dateExpiration;
   Jobs? job;
   Company? company;
@@ -28,6 +29,7 @@ class Work {
     this.status,
     this.codeAddress,
     this.dateExpiration,
+    this.dateCreated,
     this.description,
     this.age,
     this.workAddress,

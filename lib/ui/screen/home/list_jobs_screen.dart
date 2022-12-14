@@ -1,6 +1,4 @@
 // ignore_for_file: prefer_const_constructors, library_private_types_in_public_api, use_build_context_synchronously, unused_local_variable, prefer_final_fields, prefer_const_constructors_in_immutables, unused_element, unnecessary_string_interpolations, must_be_immutable
-import 'dart:convert';
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -193,7 +191,6 @@ class _JobsScreenState extends State<JobsScreen> {
                                 ),
                                 height: 40,
                                 child: DropdownSearch<Jobs>(
-                                  hint: "Tất cả",
                                   mode: Mode.MENU,
                                   maxHeight: 350,
                                   showSearchBox: true,
@@ -464,7 +461,7 @@ class _JobsScreenState extends State<JobsScreen> {
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: 150,
                               child: TextButton(
                                 style: TextButton.styleFrom(
