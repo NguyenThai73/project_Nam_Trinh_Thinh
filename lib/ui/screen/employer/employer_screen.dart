@@ -154,7 +154,7 @@ class CompanyBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(15),
+      margin: EdgeInsets.only(left: 10,right: 10,bottom: 15),
       width: MediaQuery.of(context).size.width,
       height: 150,
       decoration: BoxDecoration(

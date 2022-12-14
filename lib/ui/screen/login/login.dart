@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 width: 150,
                 height: 50,
-                decoration: BoxDecoration(color:  Color.fromARGB(255, 22, 173, 243), borderRadius: BorderRadius.circular(5)),
+                decoration: BoxDecoration(color: Color.fromARGB(255, 22, 173, 243), borderRadius: BorderRadius.circular(5)),
                 child: TextButton(
                     onPressed: () async {
                       processing();
@@ -74,6 +74,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         UserLogin userLogin = UserLogin.fromJson(body);
                         user.changeAuthorization(body['accessToken']);
                         user.changeUser(userLogin);
+                        int count = (body['user']['listJobs'] != null) ? body['user']['listJobs'].length : 0;
+                        user.changeCountJobs(count);
                         Navigator.push<void>(
                           context,
                           MaterialPageRoute<void>(

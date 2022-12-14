@@ -219,7 +219,12 @@ class _HomeBodyState extends State<HomeBody> {
                           Navigator.push<void>(
                             context,
                             MaterialPageRoute<void>(
-                              builder: (BuildContext context) => JobsScreen(titlePage: "Công việc", listJobs: listWork, province: provinces),
+                              builder: (BuildContext context) => JobsScreen(
+                                titlePage: "Công việc",
+                                listJobs: listWork,
+                                province: provinces,
+                                statusCheck: true,
+                              ),
                             ),
                           );
                         },
@@ -337,7 +342,12 @@ class ListJobsBox extends StatelessWidget {
                 Navigator.push<void>(
                   context,
                   MaterialPageRoute<void>(
-                    builder: (BuildContext context) => JobsScreen(titlePage: title!, listJobs: listWorks!, province: provinces!),
+                    builder: (BuildContext context) => JobsScreen(
+                      titlePage: title!,
+                      listJobs: listWorks!,
+                      province: provinces!,
+                      statusCheck: false,
+                    ),
                   ),
                 );
               },

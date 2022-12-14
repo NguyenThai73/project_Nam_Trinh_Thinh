@@ -83,8 +83,8 @@ class _HomePageState extends State<HomePage> {
             });
           }, //New
           selectedFontSize: 16,
-          selectedIconTheme: IconThemeData(color: colorBlack, size: 40),
-          selectedItemColor: colorBlack,
+          selectedIconTheme: IconThemeData(color: maincolor, size: 40),
+          selectedItemColor: maincolor,
           selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
