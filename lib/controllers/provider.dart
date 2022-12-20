@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:nam_trinh_thinh/model/works.dart';
 
 import '../model/user_login.dart';
 
@@ -20,4 +21,16 @@ class User with ChangeNotifier {
     countJobs = newCount;
     notifyListeners();
   }
+
+  List<WorkUT> listWorkUT = [];
+  changeWorkUT(List<WorkUT> listWorkUTNew) {
+    listWorkUT = listWorkUTNew;
+    notifyListeners();
+  }
+}
+
+class WorkUT {
+  Work work;
+  int status;
+  WorkUT({required this.work, required this.status});
 }

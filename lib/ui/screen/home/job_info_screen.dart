@@ -189,10 +189,15 @@ class _WorkInfoState extends State<WorkInfo> {
                                     ),
                                   ],
                                 ),
-                                Text(
-                                  (workInfo.dateExpiration != null) ? "Lượt xem hồ sơ:0" : "Lượt xem hồ sơ:",
-                                  style: TextStyle(color: colorBlack, fontSize: 14, fontWeight: FontWeight.w400),
-                                  overflow: TextOverflow.ellipsis,
+                                Row(
+                                  children: [
+                                    Text(
+                                      (workInfo.dateExpiration != null) ? "Lượt xem hồ sơ:0" : "Lượt xem hồ sơ:",
+                                      style: TextStyle(color: colorBlack, fontSize: 14, fontWeight: FontWeight.w400),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    SizedBox(width: 10),
+                                  ],
                                 ),
                               ],
                             )
@@ -406,9 +411,12 @@ class _WorkInfoState extends State<WorkInfo> {
                                                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                                                 ),
                                                 const SizedBox(height: 5),
-                                                Text(
-                                                  "${workInfo.workAddress ?? ""}",
-                                                  style: TextStyle(fontSize: 15),
+                                                SizedBox(
+                                                  width: MediaQuery.of(context).size.width * 0.8,
+                                                  child: Text(
+                                                    "${workInfo.workAddress ?? ""}",
+                                                    style: TextStyle(fontSize: 15),
+                                                  ),
                                                 ),
                                               ],
                                             ),

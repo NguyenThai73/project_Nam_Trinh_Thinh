@@ -9,6 +9,7 @@ import '../../../model/company.dart';
 import '../../../model/jobs.dart';
 import '../../../model/works.dart';
 import '../../style/color.dart';
+import '../employer/employer_info_screen.dart';
 import 'job_info_screen.dart';
 import 'list_jobs_screen.dart';
 
@@ -254,7 +255,7 @@ class _HomeBodyState extends State<HomeBody> {
                             TextButton(
                               onPressed: () {},
                               child: Text(
-                                "Xem tất cả",
+                                "",
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 22, 173, 243),
                                     fontSize: 15,
@@ -281,7 +282,16 @@ class _HomeBodyState extends State<HomeBody> {
                             return Builder(
                               builder: (BuildContext context) {
                                 return TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push<void>(
+                                        context,
+                                        MaterialPageRoute<void>(
+                                          builder: (BuildContext context) => EmployerInfo(
+                                            company: item,
+                                          ),
+                                        ),
+                                      );
+                                    },
                                     child: Column(
                                       children: [
                                         Container(

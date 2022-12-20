@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../../../controllers/provider.dart';
 import '../../style/color.dart';
+import '../login/login.dart';
+import 'profile.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({super.key});
@@ -175,21 +177,23 @@ class _UserScreenState extends State<UserScreen> {
                           margin: EdgeInsets.only(left: 15, right: 15, bottom: 20),
                           height: 180,
                           decoration: BoxDecoration(color: colorWhite, border: Border.all(width: 2), borderRadius: BorderRadius.circular(5)),
-                          child: Column(
-                            // ignore: prefer_const_literals_to_create_immutables
-                            children: [
-                              SizedBox(height: 10),
-                              Icon(Icons.work_history, size: 80, color: Color.fromARGB(255, 252, 151, 19)),
-                              SizedBox(height: 5),
-                              Text("Công việc ứng tuyển:", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500)),
-                              SizedBox(height: 5),
-                              SizedBox(
-                                  height: 50,
-                                  child: Text(
-                                    "0",
-                                    style: TextStyle(fontSize: 18),
-                                  ))
-                            ],
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Column(
+                              // ignore: prefer_const_literals_to_create_immutables
+                              children: [
+                                Icon(Icons.work_history, size: 80, color: Color.fromARGB(255, 252, 151, 19)),
+                                SizedBox(height: 5),
+                                Text("Công việc ứng tuyển:", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: colorBlack)),
+                                SizedBox(height: 5),
+                                SizedBox(
+                                    height: 50,
+                                    child: Text(
+                                      "${user.countJobs}",
+                                      style: TextStyle(fontSize: 18, color: colorBlack),
+                                    ))
+                              ],
+                            ),
                           ),
                         ))
                       ],
@@ -250,11 +254,38 @@ class _UserScreenState extends State<UserScreen> {
                         height: 50,
                         decoration: BoxDecoration(color: maincolor, borderRadius: BorderRadius.circular(5)),
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              //
+                              Navigator.push<void>(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) => const Profile(),
+                                ),
+                              );
+                            },
                             child: Text(
                               "Cập nhật hồ sơ",
                               style: TextStyle(color: colorBlack, fontSize: 15),
-                            )))
+                            ))),
+                    Container(
+                        margin: EdgeInsets.only(bottom: 20),
+                        width: 150,
+                        height: 50,
+                        decoration: BoxDecoration(color: maincolor, borderRadius: BorderRadius.circular(5)),
+                        child: TextButton(
+                            onPressed: () {
+                              //
+                              Navigator.push<void>(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) => LoginScreen(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              "Đăng xuất",
+                              style: TextStyle(color: colorBlack, fontSize: 15),
+                            ))),
                   ],
                 ),
               ),

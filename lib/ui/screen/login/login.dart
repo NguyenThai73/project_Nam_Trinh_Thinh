@@ -5,7 +5,10 @@ import 'package:nam_trinh_thinh/ui/style/color.dart';
 import 'package:provider/provider.dart';
 import '../../../controllers/api.dart';
 import '../../../controllers/provider.dart';
+import '../../../model/company.dart';
+import '../../../model/jobs.dart';
 import '../../../model/user_login.dart';
+import '../../../model/works.dart';
 import '../home/home_screen.dart';
 import 'login-body.dart';
 
@@ -76,6 +79,43 @@ class _LoginScreenState extends State<LoginScreen> {
                         user.changeUser(userLogin);
                         int count = (body['user']['listJobs'] != null) ? body['user']['listJobs'].length : 0;
                         user.changeCountJobs(count);
+                        List<WorkUT> listWorkUT = [];
+                        for (var element in body['user']['listJobs'] ?? []) {
+                          WorkUT item = WorkUT(
+                            work: Work(
+                              id: element['jobs']['id'],
+                              company: Company(
+                                id: element['jobs']['company']['id'],
+                                name: element['jobs']['company']['name'],
+                                phone: element['jobs']['company']['phone'],
+                                email: element['jobs']['company']['email'],
+                                address: element['jobs']['company']['address'],
+                                urlImg: element['jobs']['company']['urlImg'],
+                              ),
+                              job: Jobs(
+                                id: element['jobs']['job']['id'],
+                                name: element['jobs']['job']['name'],
+                                countJob: element['jobs']['job']['countJob'],
+                              ),
+                              name: element['jobs']['name'],
+                              salary: element['jobs']['salary'],
+                              sex: element['jobs']['sex'],
+                              age: element['jobs']['age'],
+                              experence: element['jobs']['experence'],
+                              contactInfo: element['jobs']['contactInfo'],
+                              area: element['jobs']['area'],
+                              workAddress: element['jobs']['workAddress'],
+                              description: element['jobs']['description'],
+                              status: element['jobs']['status'],
+                              codeAddress: element['jobs']['codeAddress'],
+                              dateExpiration: element['jobs']['dateExpiration'],
+                            ),
+                            status: element['status'],
+                          );
+                          listWorkUT.add(item);
+                          print(item.work.company!.name);
+                        }
+                        user.changeWorkUT(listWorkUT);
                         Navigator.push<void>(
                           context,
                           MaterialPageRoute<void>(
