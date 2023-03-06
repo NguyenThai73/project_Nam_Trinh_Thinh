@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nam_trinh_thinh/controllers/api.dart';
+import 'package:nam_trinh_thinh/model/recruiment.dart';
 import 'package:provider/provider.dart';
 import '../../../controllers/provider.dart';
 import '../../../model/company.dart';
@@ -152,12 +153,16 @@ class _WorkInfoState extends State<WorkInfo> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      margin: const EdgeInsets.only(top: 15, bottom: 5),
-                                      width: MediaQuery.of(context).size.width * 0.75,
+                                      margin: const EdgeInsets.only(
+                                          top: 15, bottom: 5),
+                                      width: MediaQuery.of(context).size.width *
+                                          0.75,
                                       height: 48,
                                       child: Text(
                                         workInfo.name!,
-                                        style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w500),
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -165,7 +170,9 @@ class _WorkInfoState extends State<WorkInfo> {
                                     const SizedBox(height: 5),
                                     Text(
                                       workInfo.company!.name!,
-                                      style: TextStyle(fontSize: 19, fontWeight: FontWeight.w400),
+                                      style: TextStyle(
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.w400),
                                     ),
                                   ],
                                 )
@@ -178,13 +185,19 @@ class _WorkInfoState extends State<WorkInfo> {
                                 Row(
                                   children: [
                                     SizedBox(width: 10),
-                                    Icon(Icons.schedule, size: 23, color: Color.fromARGB(255, 22, 173, 243)),
+                                    Icon(Icons.schedule,
+                                        size: 23,
+                                        color:
+                                            Color.fromARGB(255, 22, 173, 243)),
                                     SizedBox(width: 10),
                                     Text(
                                       (workInfo.dateExpiration != null)
                                           ? "Hạn tuyển dụng: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(workInfo.dateExpiration ?? ""))}"
                                           : "Hạn tuyển dụng:",
-                                      style: TextStyle(color: colorBlack, fontSize: 14, fontWeight: FontWeight.w400),
+                                      style: TextStyle(
+                                          color: colorBlack,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400),
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ],
@@ -192,8 +205,13 @@ class _WorkInfoState extends State<WorkInfo> {
                                 Row(
                                   children: [
                                     Text(
-                                      (workInfo.dateExpiration != null) ? "Lượt xem hồ sơ:0" : "Lượt xem hồ sơ:",
-                                      style: TextStyle(color: colorBlack, fontSize: 14, fontWeight: FontWeight.w400),
+                                      (workInfo.dateExpiration != null)
+                                          ? "Lượt xem hồ sơ:0"
+                                          : "Lượt xem hồ sơ:",
+                                      style: TextStyle(
+                                          color: colorBlack,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400),
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                     SizedBox(width: 10),
@@ -212,7 +230,8 @@ class _WorkInfoState extends State<WorkInfo> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Container(
-                                padding: const EdgeInsets.only(left: 20, right: 40),
+                                padding:
+                                    const EdgeInsets.only(left: 20, right: 40),
                                 child: TabBar(
                                   indicatorWeight: 3,
                                   isScrollable: true,
@@ -225,20 +244,26 @@ class _WorkInfoState extends State<WorkInfo> {
                                   tabs: [
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: (selectedTap == 0) ? maincolor : colorWhite,
-                                        border: Border.all(width: 1, color: maincolor),
+                                        color: (selectedTap == 0)
+                                            ? maincolor
+                                            : colorWhite,
+                                        border: Border.all(
+                                            width: 1, color: maincolor),
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                       width: 180,
                                       height: 40,
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Text(
                                             "Thông tin",
                                             style: TextStyle(
                                               fontSize: 18,
-                                              color: (selectedTap == 0) ? colorWhite : colorBlack,
+                                              color: (selectedTap == 0)
+                                                  ? colorWhite
+                                                  : colorBlack,
                                             ),
                                           ),
                                         ],
@@ -246,20 +271,26 @@ class _WorkInfoState extends State<WorkInfo> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: (selectedTap == 1) ? maincolor : colorWhite,
-                                        border: Border.all(width: 1, color: maincolor),
+                                        color: (selectedTap == 1)
+                                            ? maincolor
+                                            : colorWhite,
+                                        border: Border.all(
+                                            width: 1, color: maincolor),
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                       width: 180,
                                       height: 40,
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Text(
                                             "Công ty",
                                             style: TextStyle(
                                               fontSize: 18,
-                                              color: (selectedTap == 1) ? colorWhite : colorBlack,
+                                              color: (selectedTap == 1)
+                                                  ? colorWhite
+                                                  : colorBlack,
                                             ),
                                           ),
                                         ],
@@ -271,34 +302,45 @@ class _WorkInfoState extends State<WorkInfo> {
                               Expanded(
                                 child: TabBarView(children: [
                                   Container(
-                                    height: MediaQuery.of(context).size.height * 0.73,
-                                    padding: const EdgeInsets.only(left: 15, right: 15),
+                                    height: MediaQuery.of(context).size.height *
+                                        0.73,
+                                    padding: const EdgeInsets.only(
+                                        left: 15, right: 15),
                                     child: ListView(
                                       controller: ScrollController(),
                                       children: [
                                         const SizedBox(height: 15),
                                         Text(
                                           "Thông tin chung:",
-                                          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.w600),
                                         ),
                                         const SizedBox(height: 20),
                                         Row(
                                           children: [
                                             const SizedBox(width: 20),
-                                            const Icon(Icons.paid, size: 20, color: maincolor),
+                                            const Icon(Icons.paid,
+                                                size: 20, color: maincolor),
                                             const SizedBox(width: 20),
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   "Mức lương:",
-                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
                                                 const SizedBox(height: 5),
                                                 Text(
                                                   "${oCcy.format(workInfo.salary)} VNĐ",
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                               ],
                                             ),
@@ -308,20 +350,27 @@ class _WorkInfoState extends State<WorkInfo> {
                                         Row(
                                           children: [
                                             const SizedBox(width: 20),
-                                            const Icon(Icons.person_add, size: 20, color: maincolor),
+                                            const Icon(Icons.person_add,
+                                                size: 20, color: maincolor),
                                             const SizedBox(width: 20),
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   "Số lượng:",
-                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
                                                 const SizedBox(height: 5),
                                                 Text(
                                                   "${workInfo.quantity ?? 0}",
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                               ],
                                             ),
@@ -331,20 +380,29 @@ class _WorkInfoState extends State<WorkInfo> {
                                         Row(
                                           children: [
                                             const SizedBox(width: 20),
-                                            const Icon(Icons.face_retouching_natural, size: 20, color: maincolor),
+                                            const Icon(
+                                                Icons.face_retouching_natural,
+                                                size: 20,
+                                                color: maincolor),
                                             const SizedBox(width: 20),
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   "Độ tuổi:",
-                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
                                                 const SizedBox(height: 5),
                                                 Text(
                                                   "${workInfo.age}",
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                               ],
                                             ),
@@ -354,20 +412,27 @@ class _WorkInfoState extends State<WorkInfo> {
                                         Row(
                                           children: [
                                             const SizedBox(width: 20),
-                                            const Icon(Icons.person, size: 20, color: maincolor),
+                                            const Icon(Icons.person,
+                                                size: 20, color: maincolor),
                                             const SizedBox(width: 20),
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   "Giới tính:",
-                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
                                                 const SizedBox(height: 5),
                                                 Text(
                                                   "${workInfo.sex == true ? "Nam" : workInfo.sex == false ? "Nữ" : "Không yêu cầu"}",
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                               ],
                                             ),
@@ -377,20 +442,27 @@ class _WorkInfoState extends State<WorkInfo> {
                                         Row(
                                           children: [
                                             const SizedBox(width: 20),
-                                            const Icon(Icons.workspace_premium, size: 20, color: maincolor),
+                                            const Icon(Icons.workspace_premium,
+                                                size: 20, color: maincolor),
                                             const SizedBox(width: 20),
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   "Kinh nghiệm:",
-                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
                                                 const SizedBox(height: 5),
                                                 Text(
                                                   "${workInfo.experence ?? ""}",
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                               ],
                                             ),
@@ -400,22 +472,32 @@ class _WorkInfoState extends State<WorkInfo> {
                                         Row(
                                           children: [
                                             const SizedBox(width: 20),
-                                            const Icon(Icons.location_on, size: 20, color: maincolor),
+                                            const Icon(Icons.location_on,
+                                                size: 20, color: maincolor),
                                             const SizedBox(width: 20),
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   "Địa chỉ:",
-                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
                                                 const SizedBox(height: 5),
                                                 SizedBox(
-                                                  width: MediaQuery.of(context).size.width * 0.8,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.8,
                                                   child: Text(
                                                     "${workInfo.workAddress ?? ""}",
-                                                    style: TextStyle(fontSize: 15),
+                                                    style:
+                                                        TextStyle(fontSize: 15),
                                                   ),
                                                 ),
                                               ],
@@ -426,22 +508,29 @@ class _WorkInfoState extends State<WorkInfo> {
                                         Row(
                                           children: [
                                             const SizedBox(width: 20),
-                                            const Icon(Icons.date_range, size: 20, color: maincolor),
+                                            const Icon(Icons.date_range,
+                                                size: 20, color: maincolor),
                                             const SizedBox(width: 20),
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   "Ngày đăng tuyển:",
-                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
                                                 const SizedBox(height: 5),
                                                 Text(
                                                   (workInfo.dateCreated != null)
                                                       ? "${DateFormat('dd-MM-yyyy').format(DateTime.parse(workInfo.dateCreated!))}"
                                                       : "",
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                               ],
                                             ),
@@ -450,14 +539,19 @@ class _WorkInfoState extends State<WorkInfo> {
                                         const SizedBox(height: 25),
                                         Text(
                                           "Yêu cầu khác:",
-                                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500),
                                         ),
                                         const SizedBox(height: 15),
                                         Row(
                                           children: [
                                             const SizedBox(width: 40),
                                             SizedBox(
-                                              width: MediaQuery.of(context).size.width * 0.8,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.8,
                                               child: Text(
                                                 "${workInfo.description ?? ""}",
                                                 style: TextStyle(fontSize: 15),
@@ -469,35 +563,52 @@ class _WorkInfoState extends State<WorkInfo> {
                                     ),
                                   ),
                                   Container(
-                                    padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-                                    height: MediaQuery.of(context).size.height * 0.73,
+                                    padding: const EdgeInsets.only(
+                                        top: 15, left: 15, right: 15),
+                                    height: MediaQuery.of(context).size.height *
+                                        0.73,
                                     child: ListView(
                                       controller: ScrollController(),
                                       children: [
                                         Text(
                                           workInfo.company!.name ?? "",
-                                          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.w600),
                                         ),
                                         const SizedBox(height: 20),
                                         Row(
                                           children: [
                                             const SizedBox(width: 20),
-                                            const Icon(Icons.location_on, size: 20, color: maincolor),
+                                            const Icon(Icons.location_on,
+                                                size: 20, color: maincolor),
                                             const SizedBox(width: 20),
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   "Địa chỉ:",
-                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
                                                 const SizedBox(height: 5),
                                                 SizedBox(
-                                                    width: MediaQuery.of(context).size.width * 0.8,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.8,
                                                     child: Text(
-                                                      workInfo.company!.address ?? "",
-                                                      style: TextStyle(fontSize: 15),
+                                                      workInfo.company!
+                                                              .address ??
+                                                          "",
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                       maxLines: 3,
                                                     )),
                                               ],
@@ -508,20 +619,27 @@ class _WorkInfoState extends State<WorkInfo> {
                                         Row(
                                           children: [
                                             const SizedBox(width: 20),
-                                            const Icon(Icons.call, size: 20, color: maincolor),
+                                            const Icon(Icons.call,
+                                                size: 20, color: maincolor),
                                             const SizedBox(width: 20),
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   "Phone:",
-                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
                                                 const SizedBox(height: 5),
                                                 Text(
                                                   workInfo.company!.phone ?? "",
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                               ],
                                             ),
@@ -531,20 +649,27 @@ class _WorkInfoState extends State<WorkInfo> {
                                         Row(
                                           children: [
                                             const SizedBox(width: 20),
-                                            const Icon(Icons.email, size: 20, color: maincolor),
+                                            const Icon(Icons.email,
+                                                size: 20, color: maincolor),
                                             const SizedBox(width: 20),
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   "Email:",
-                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
                                                 const SizedBox(height: 5),
                                                 Text(
                                                   workInfo.company!.email ?? "",
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                               ],
                                             ),
@@ -553,17 +678,23 @@ class _WorkInfoState extends State<WorkInfo> {
                                         const SizedBox(height: 25),
                                         Text(
                                           "Giới thiệu về công ty",
-                                          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.w600),
                                         ),
                                         const SizedBox(height: 15),
                                         Row(
                                           children: [
                                             const SizedBox(width: 40),
                                             SizedBox(
-                                                width: MediaQuery.of(context).size.width * 0.8,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.8,
                                                 child: Text(
                                                   "",
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 )),
                                           ],
                                         ),
@@ -589,10 +720,22 @@ class _WorkInfoState extends State<WorkInfo> {
                                 borderRadius: BorderRadius.circular(35),
                               ),
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: (!user.listWorkUT.containsKey(workInfo.id))? () async {
+                                  var requestBody = {"idUser": user.user.id, "idJob": workInfo.id};
+                                  var response= await httpPost("/api/listprofile/save", requestBody, context);
+                                  print(response);
+                                  Map<int, Recruitment> listRecruitmentsNew= user.listWorkUT;
+                                  listRecruitmentsNew[workInfo.id!]=Recruitment();
+                                  user.changeWorkUT(listRecruitmentsNew);
+                                }:null,
                                 child: Text(
-                                  "Ứng tuyển ngay",
-                                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: colorBlack),
+                                  (user.listWorkUT.containsKey(workInfo.id))
+                                      ? "Ứng tuyển lại"
+                                      : "Ứng tuyển ngay",
+                                  style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w400,
+                                      color: colorBlack),
                                 ),
                               ),
                             ),

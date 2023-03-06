@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nam_trinh_thinh/model/works.dart';
 
+import '../model/recruiment.dart';
 import '../model/user_login.dart';
 
 class User with ChangeNotifier {
@@ -22,8 +23,8 @@ class User with ChangeNotifier {
     notifyListeners();
   }
 
-  List<WorkUT> listWorkUT = [];
-  changeWorkUT(List<WorkUT> listWorkUTNew) {
+  Map<int, Recruitment> listWorkUT = {};
+  changeWorkUT(Map<int, Recruitment> listWorkUTNew) {
     listWorkUT = listWorkUTNew;
     notifyListeners();
   }

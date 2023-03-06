@@ -37,6 +37,7 @@ class _HomeBodyState extends State<HomeBody> {
     listWorkNew = [];
     listWorkSalary = [];
     var response1 = await httpPost("/api/listjobs/getjobs", {}, context);
+    print(response1);
     if (response1.containsKey("body")) {
       var body = response1['body'];
 

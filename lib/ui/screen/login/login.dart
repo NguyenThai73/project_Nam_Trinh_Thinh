@@ -7,6 +7,7 @@ import '../../../controllers/api.dart';
 import '../../../controllers/provider.dart';
 import '../../../model/company.dart';
 import '../../../model/jobs.dart';
+import '../../../model/recruiment.dart';
 import '../../../model/user_login.dart';
 import '../../../model/works.dart';
 import '../home/home_screen.dart';
@@ -60,60 +61,63 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 width: 150,
                 height: 50,
-                decoration: BoxDecoration(color: Color.fromARGB(255, 22, 173, 243), borderRadius: BorderRadius.circular(5)),
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 22, 173, 243),
+                    borderRadius: BorderRadius.circular(5)),
                 child: TextButton(
                     onPressed: () async {
                       processing();
-                      var requestBody = {"username": _emailController.text, "password": _passwordController.text};
+                      var requestBody = {
+                        "username": _emailController.text,
+                        "password": _passwordController.text
+                      };
                       var response = await httpPostLogin(requestBody, context);
                       if (response.containsKey("body")) {
                         // var body = jsonDecode(response['body']);
                         var body = response['body'];
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("oke"),
-                          backgroundColor: Colors.blue,
-                        ));
                         // Navigator.pop(context);
                         UserLogin userLogin = UserLogin.fromJson(body);
                         user.changeAuthorization(body['accessToken']);
                         user.changeUser(userLogin);
-                        int count = (body['user']['listJobs'] != null) ? body['user']['listJobs'].length : 0;
+                        int count = (body['user']['listJobs'] != null)
+                            ? body['user']['listJobs'].length
+                            : 0;
                         user.changeCountJobs(count);
-                        List<WorkUT> listWorkUT = [];
-                        for (var element in body['user']['listJobs'] ?? []) {
-                          WorkUT item = WorkUT(
-                            work: Work(
-                              id: element['jobs']['id'],
-                              company: Company(
-                                id: element['jobs']['company']['id'],
-                                name: element['jobs']['company']['name'],
-                                phone: element['jobs']['company']['phone'],
-                                email: element['jobs']['company']['email'],
-                                address: element['jobs']['company']['address'],
-                                urlImg: element['jobs']['company']['urlImg'],
+                        Map<int, Recruitment> listWorkUT = {};
+                        for (var element in body['user']['listJobs']) {
+                          Recruitment item = Recruitment(
+                              work: Work(
+                                id: element['job']['id'],
+                                company: Company(
+                                  id: element['job']['company']['id'],
+                                  name: element['job']['company']['name'],
+                                  phone: element['job']['company']['phone'],
+                                  email: element['job']['company']['email'],
+                                  address: element['job']['company']['address'],
+                                  urlImg: element['job']['company']['urlImg'],
+                                ),
+                                job: Jobs(
+                                  id: element['job']['job']['id'],
+                                  name: element['job']['job']['name'],
+                                  countJob: element['job']['job']['countJob'],
+                                ),
+                                name: element['job']['name'],
+                                salary: element['job']['salary'],
+                                sex: element['job']['sex'],
+                                age: element['job']['age'],
+                                experence: element['job']['experence'],
+                                contactInfo: element['job']['contactInfo'],
+                                area: element['job']['area'],
+                                workAddress: element['job']['workAddress'],
+                                description: element['job']['description'],
+                                status: element['job']['status'],
+                                codeAddress: element['job']['codeAddress'],
+                                dateExpiration: element['job']
+                                    ['dateExpiration'],
                               ),
-                              job: Jobs(
-                                id: element['jobs']['job']['id'],
-                                name: element['jobs']['job']['name'],
-                                countJob: element['jobs']['job']['countJob'],
-                              ),
-                              name: element['jobs']['name'],
-                              salary: element['jobs']['salary'],
-                              sex: element['jobs']['sex'],
-                              age: element['jobs']['age'],
-                              experence: element['jobs']['experence'],
-                              contactInfo: element['jobs']['contactInfo'],
-                              area: element['jobs']['area'],
-                              workAddress: element['jobs']['workAddress'],
-                              description: element['jobs']['description'],
-                              status: element['jobs']['status'],
-                              codeAddress: element['jobs']['codeAddress'],
-                              dateExpiration: element['jobs']['dateExpiration'],
-                            ),
-                            status: element['status'],
-                          );
-                          listWorkUT.add(item);
-                          print(item.work.company!.name);
+                              status: element['status'],
+                              message: element['message']);
+                          listWorkUT[item.work?.id ?? 0] = item;
                         }
                         user.changeWorkUT(listWorkUT);
                         Navigator.push<void>(
@@ -124,7 +128,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                       }
                     },
-                    child: Text('Đăng nhập', style: TextStyle(color: colorWhite, fontSize: 25))),
+                    child: Text('Đăng nhập',
+                        style: TextStyle(color: colorWhite, fontSize: 25))),
               ),
 
               // const SizedBox(height: 20),

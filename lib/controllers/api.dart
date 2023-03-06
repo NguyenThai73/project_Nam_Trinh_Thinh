@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:nam_trinh_thinh/controllers/provider.dart';
 import 'package:provider/provider.dart';
 
-String baseUrl = "https://recruit-app-backend.herokuapp.com";
+String baseUrl = "http://192.168.1.11:8080";
 
 //đăng nhập
 httpPostLogin(requestBody, context) async {

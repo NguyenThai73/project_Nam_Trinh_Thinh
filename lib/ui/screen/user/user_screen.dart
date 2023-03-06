@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../controllers/provider.dart';
 import '../../style/color.dart';
 import '../login/login.dart';
+import '../recruiment/recruiment-screen.dart';
 import 'profile.dart';
 
 class UserScreen extends StatefulWidget {
@@ -24,7 +25,8 @@ class _UserScreenState extends State<UserScreen> {
     });
   }
 
-  var urlAvatar = "https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg";
+  var urlAvatar =
+      "https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg";
   @override
   void initState() {
     super.initState();
@@ -57,18 +59,25 @@ class _UserScreenState extends State<UserScreen> {
                         borderRadius: BorderRadius.circular(90),
                       ),
                       child: ClipOval(
-                          child: (user.user.urlImg == "" || user.user.urlImg == null)
-                              ? Image.network(urlAvatar, fit: BoxFit.cover, width: 180, height: 180)
-                              : Image.network(user.user.urlImg!, fit: BoxFit.cover, width: 180, height: 180)),
+                          child: (user.user.urlImg == "" ||
+                                  user.user.urlImg == null)
+                              ? Image.network(urlAvatar,
+                                  fit: BoxFit.cover, width: 180, height: 180)
+                              : Image.network(user.user.urlImg!,
+                                  fit: BoxFit.cover, width: 180, height: 180)),
                     ),
                     SizedBox(height: 10),
-                    Text(user.user.fullName ?? "", style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600)),
+                    Text(user.user.fullName ?? "",
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.w600)),
                     SizedBox(height: 10),
                     Text(
                       (user.user.job?.name != null && user.user.job!.name != "")
-                          ? user.user.job!.name ?? "Chưa cập nhật vị trí công việc"
+                          ? user.user.job!.name ??
+                              "Chưa cập nhật vị trí công việc"
                           : "Chưa cập nhật vị trí công việc",
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -88,11 +97,15 @@ class _UserScreenState extends State<UserScreen> {
                         (light)
                             ? Text(
                                 "Trạng thái tìm việc đang bật",
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.green),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.green),
                               )
                             : Text(
                                 "Trạng thái tìm việc đang tắt",
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w400),
                               ),
                       ],
                     ),
@@ -102,16 +115,25 @@ class _UserScreenState extends State<UserScreen> {
                       children: [
                         Expanded(
                             child: Container(
-                          margin: EdgeInsets.only(left: 15, right: 15, bottom: 20),
+                          margin:
+                              EdgeInsets.only(left: 15, right: 15, bottom: 20),
                           height: 180,
-                          decoration: BoxDecoration(color: colorWhite, border: Border.all(width: 2), borderRadius: BorderRadius.circular(5)),
+                          decoration: BoxDecoration(
+                              color: colorWhite,
+                              border: Border.all(width: 2),
+                              borderRadius: BorderRadius.circular(5)),
                           child: Column(
                             // ignore: prefer_const_literals_to_create_immutables
                             children: [
                               SizedBox(height: 10),
-                              Icon(Icons.person, size: 80, color: Color.fromARGB(255, 20, 149, 255)),
+                              Icon(Icons.person,
+                                  size: 80,
+                                  color: Color.fromARGB(255, 20, 149, 255)),
                               SizedBox(height: 5),
-                              Text("NTD xem hồ sơ:", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500)),
+                              Text("NTD xem hồ sơ:",
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500)),
                               SizedBox(height: 5),
                               SizedBox(
                                   height: 50,
@@ -124,16 +146,25 @@ class _UserScreenState extends State<UserScreen> {
                         )),
                         Expanded(
                             child: Container(
-                          margin: EdgeInsets.only(left: 15, right: 15, bottom: 20),
+                          margin:
+                              EdgeInsets.only(left: 15, right: 15, bottom: 20),
                           height: 180,
-                          decoration: BoxDecoration(color: colorWhite, border: Border.all(width: 2), borderRadius: BorderRadius.circular(5)),
+                          decoration: BoxDecoration(
+                              color: colorWhite,
+                              border: Border.all(width: 2),
+                              borderRadius: BorderRadius.circular(5)),
                           child: Column(
                             // ignore: prefer_const_literals_to_create_immutables
                             children: [
                               SizedBox(height: 10),
-                              Icon(Icons.task_alt, size: 80, color: Color.fromARGB(255, 49, 240, 90)),
+                              Icon(Icons.task_alt,
+                                  size: 80,
+                                  color: Color.fromARGB(255, 49, 240, 90)),
                               SizedBox(height: 5),
-                              Text("Lượt lưu hồ sơ:", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500)),
+                              Text("Lượt lưu hồ sơ:",
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500)),
                               SizedBox(height: 5),
                               SizedBox(
                                   height: 50,
@@ -152,21 +183,33 @@ class _UserScreenState extends State<UserScreen> {
                       children: [
                         Expanded(
                             child: Container(
-                          margin: EdgeInsets.only(left: 15, right: 15, bottom: 20),
+                          margin:
+                              EdgeInsets.only(left: 15, right: 15, bottom: 20),
                           height: 180,
-                          decoration: BoxDecoration(color: colorWhite, border: Border.all(width: 2), borderRadius: BorderRadius.circular(5)),
+                          decoration: BoxDecoration(
+                              color: colorWhite,
+                              border: Border.all(width: 2),
+                              borderRadius: BorderRadius.circular(5)),
                           child: Column(
                             // ignore: prefer_const_literals_to_create_immutables
                             children: [
                               SizedBox(height: 10),
-                              Icon(Icons.perm_contact_calendar, size: 80, color: Color.fromARGB(255, 216, 166, 74)),
+                              Icon(Icons.perm_contact_calendar,
+                                  size: 80,
+                                  color: Color.fromARGB(255, 216, 166, 74)),
                               SizedBox(height: 5),
-                              Text("CV:", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500)),
+                              Text("CV:",
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500)),
                               SizedBox(height: 5),
                               SizedBox(
                                   height: 50,
                                   child: Text(
-                                    (user.user.urlCv != "" && user.user.urlCv != null) ? "Đã có" : "Chưa có",
+                                    (user.user.urlCv != "" &&
+                                            user.user.urlCv != null)
+                                        ? "Đã có"
+                                        : "Chưa có",
                                     style: TextStyle(fontSize: 18),
                                   ))
                             ],
@@ -174,23 +217,42 @@ class _UserScreenState extends State<UserScreen> {
                         )),
                         Expanded(
                             child: Container(
-                          margin: EdgeInsets.only(left: 15, right: 15, bottom: 20),
+                          margin:
+                              EdgeInsets.only(left: 15, right: 15, bottom: 20),
                           height: 180,
-                          decoration: BoxDecoration(color: colorWhite, border: Border.all(width: 2), borderRadius: BorderRadius.circular(5)),
+                          decoration: BoxDecoration(
+                              color: colorWhite,
+                              border: Border.all(width: 2),
+                              borderRadius: BorderRadius.circular(5)),
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push<void>(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      RecruitmentScreen(),
+                                ),
+                              );
+                            },
                             child: Column(
                               // ignore: prefer_const_literals_to_create_immutables
                               children: [
-                                Icon(Icons.work_history, size: 80, color: Color.fromARGB(255, 252, 151, 19)),
+                                Icon(Icons.work_history,
+                                    size: 80,
+                                    color: Color.fromARGB(255, 252, 151, 19)),
                                 SizedBox(height: 5),
-                                Text("Công việc ứng tuyển:", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: colorBlack)),
+                                Text("Công việc ứng tuyển:",
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500,
+                                        color: colorBlack)),
                                 SizedBox(height: 5),
                                 SizedBox(
                                     height: 50,
                                     child: Text(
                                       "${user.countJobs}",
-                                      style: TextStyle(fontSize: 18, color: colorBlack),
+                                      style: TextStyle(
+                                          fontSize: 18, color: colorBlack),
                                     ))
                               ],
                             ),
@@ -204,21 +266,33 @@ class _UserScreenState extends State<UserScreen> {
                       children: [
                         Expanded(
                             child: Container(
-                          margin: EdgeInsets.only(left: 15, right: 15, bottom: 20),
+                          margin:
+                              EdgeInsets.only(left: 15, right: 15, bottom: 20),
                           height: 180,
-                          decoration: BoxDecoration(color: colorWhite, border: Border.all(width: 2), borderRadius: BorderRadius.circular(5)),
+                          decoration: BoxDecoration(
+                              color: colorWhite,
+                              border: Border.all(width: 2),
+                              borderRadius: BorderRadius.circular(5)),
                           child: Column(
                             // ignore: prefer_const_literals_to_create_immutables
                             children: [
                               SizedBox(height: 10),
-                              Icon(Icons.email, size: 80, color: Color.fromARGB(255, 54, 240, 29)),
+                              Icon(Icons.email,
+                                  size: 80,
+                                  color: Color.fromARGB(255, 54, 240, 29)),
                               SizedBox(height: 5),
-                              Text("Email:", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500)),
+                              Text("Email:",
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500)),
                               SizedBox(height: 5),
                               SizedBox(
                                   height: 50,
                                   child: Text(
-                                    (user.user.email != null && user.user.email != "") ? user.user.email! : "",
+                                    (user.user.email != null &&
+                                            user.user.email != "")
+                                        ? user.user.email!
+                                        : "",
                                     style: TextStyle(fontSize: 16.5),
                                   ))
                             ],
@@ -226,21 +300,33 @@ class _UserScreenState extends State<UserScreen> {
                         )),
                         Expanded(
                             child: Container(
-                          margin: EdgeInsets.only(left: 15, right: 15, bottom: 20),
+                          margin:
+                              EdgeInsets.only(left: 15, right: 15, bottom: 20),
                           height: 180,
-                          decoration: BoxDecoration(color: colorWhite, border: Border.all(width: 2), borderRadius: BorderRadius.circular(5)),
+                          decoration: BoxDecoration(
+                              color: colorWhite,
+                              border: Border.all(width: 2),
+                              borderRadius: BorderRadius.circular(5)),
                           child: Column(
                             // ignore: prefer_const_literals_to_create_immutables
                             children: [
                               SizedBox(height: 10),
-                              Icon(Icons.phone_android, size: 80, color: Color.fromARGB(255, 11, 142, 230)),
+                              Icon(Icons.phone_android,
+                                  size: 80,
+                                  color: Color.fromARGB(255, 11, 142, 230)),
                               SizedBox(height: 5),
-                              Text("SĐT:", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500)),
+                              Text("SĐT:",
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500)),
                               SizedBox(height: 5),
                               SizedBox(
                                   height: 50,
                                   child: Text(
-                                    (user.user.phone != null && user.user.phone != "") ? user.user.phone! : "",
+                                    (user.user.phone != null &&
+                                            user.user.phone != "")
+                                        ? user.user.phone!
+                                        : "",
                                     style: TextStyle(fontSize: 16.5),
                                   ))
                             ],
@@ -252,14 +338,17 @@ class _UserScreenState extends State<UserScreen> {
                         margin: EdgeInsets.only(bottom: 20),
                         width: 150,
                         height: 50,
-                        decoration: BoxDecoration(color: maincolor, borderRadius: BorderRadius.circular(5)),
+                        decoration: BoxDecoration(
+                            color: maincolor,
+                            borderRadius: BorderRadius.circular(5)),
                         child: TextButton(
                             onPressed: () {
                               //
                               Navigator.push<void>(
                                 context,
                                 MaterialPageRoute<void>(
-                                  builder: (BuildContext context) => const Profile(),
+                                  builder: (BuildContext context) =>
+                                      const Profile(),
                                 ),
                               );
                             },
@@ -271,14 +360,17 @@ class _UserScreenState extends State<UserScreen> {
                         margin: EdgeInsets.only(bottom: 20),
                         width: 150,
                         height: 50,
-                        decoration: BoxDecoration(color: maincolor, borderRadius: BorderRadius.circular(5)),
+                        decoration: BoxDecoration(
+                            color: maincolor,
+                            borderRadius: BorderRadius.circular(5)),
                         child: TextButton(
                             onPressed: () {
                               //
                               Navigator.push<void>(
                                 context,
                                 MaterialPageRoute<void>(
-                                  builder: (BuildContext context) => LoginScreen(),
+                                  builder: (BuildContext context) =>
+                                      LoginScreen(),
                                 ),
                               );
                             },
